@@ -1,5 +1,7 @@
 package singlejar;
 
+import com.google.common.collect.ImmutableMap;
+import restx.ResourcesRoute;
 import restx.config.ConfigLoader;
 import restx.config.ConfigSupplier;
 import restx.factory.Provides;
@@ -14,7 +16,7 @@ import javax.inject.Named;
 
 import java.nio.file.Paths;
 
-@Module
+@Module(priority = -1)
 public class AppModule {
     @Provides
     public SignatureKey signatureKey() {
@@ -25,6 +27,11 @@ public class AppModule {
     @Named("restx.admin.password")
     public String restxAdminPassword() {
         return "6708";
+    }
+
+    @Provides
+    public ResourcesRoute assetsRoute() {
+        return new ResourcesRoute("assets", "/assets", "assets", ImmutableMap.of("", "index.html"));
     }
 
     @Provides
