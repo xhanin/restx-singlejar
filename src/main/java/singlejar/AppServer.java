@@ -17,11 +17,10 @@ public class AppServer {
         WebServer server = SimpleWebServer.builder().setRouterPath("/api").setPort(port).build();
 
         /*
-         * load mode from system property if defined, or default to dev
-         * be careful with that setting, if you use this class to launch your server in production, make sure to launch
-         * it with -Drestx.mode=prod or change the default here
+         * load mode from system property if defined, or default to prod
+         * when using this class to launch your server in development, launch it with -Drestx.mode=dev
          */
-        System.setProperty("restx.mode", System.getProperty("restx.mode", "dev"));
+        System.setProperty("restx.mode", System.getProperty("restx.mode", "prod"));
         System.setProperty("restx.app.package", "singlejar");
 
         server.startAndAwait();
