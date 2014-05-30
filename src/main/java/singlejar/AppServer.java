@@ -14,7 +14,7 @@ import restx.server.simple.simple.SimpleWebServer;
 public class AppServer {
     public static void main(String[] args) throws Exception {
         int port = Integer.valueOf(Optional.fromNullable(System.getenv("PORT")).or("8080"));
-        WebServer server = SimpleWebServer.builder().setRouterPath("/api").setPort(port).build();
+        WebServer server = SimpleWebServer.builder().setRouterPath("").setPort(port).build();
 
         /*
          * load mode from system property if defined, or default to prod
