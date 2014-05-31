@@ -14,8 +14,8 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
         <janino.version>2.6.1</janino.version>
-        <restx.version>0.32</restx.version>
-        <app.main.class>singlejar.AppServer</app.main.class>
+        <restx.version>0.33.1</restx.version>
+        <project.main.classname>singlejar.AppServer</project.main.classname>
     </properties>
 
     <dependencies>
@@ -92,20 +92,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.3</version>
                 <configuration>
                     <transformers>
                         <transformer
                                 implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <manifestEntries>
-                                <Main-Class>${app.main.class}</Main-Class>
+                                <Main-Class>${project.main.classname}</Main-Class>
                             </manifestEntries>
                         </transformer>
                         <transformer

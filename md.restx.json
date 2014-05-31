@@ -1,11 +1,17 @@
 {
     "module": "singlejar:singlejar:0.1-SNAPSHOT",
-    "packaging": "war",
+    "packaging": "jar",
 
     "properties": {
         "java.version": "1.7",
         "janino.version": "2.6.1",
-        "restx.version": "0.32"
+        "restx.version": "0.33.1",
+        "project.main.classname": "singlejar.AppServer"
+    },
+    "fragments": {
+        "maven": [
+            "classpath:///restx/build/fragments/maven/uber-jar.xml"
+        ]
     },
     "dependencies": {
         "compile": [
