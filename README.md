@@ -14,5 +14,5 @@ RESTX example to package app as a single executable jar.
 
 Then check:
 
-http://localhost:8080/assets/ for static assets.
+http://localhost:8080/ for static assets located in `src/main/resources/assets`.
 http://localhost:8080/@/ui/ for RESTX console.

@@ -11,12 +11,11 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableSet;
 import restx.security.*;
 import restx.factory.Module;
-import restx.factory.Provides;
 import javax.inject.Named;
 
 import java.nio.file.Paths;
 
-@Module(priority = -1)
+@Module
 public class AppModule {
     @Provides
     public SignatureKey signatureKey() {
@@ -26,12 +25,17 @@ public class AppModule {
     @Provides
     @Named("restx.admin.password")
     public String restxAdminPassword() {
-        return "6708";
+        return "juma";
     }
 
-    @Provides
+    @Provides(priority = 2000) // We set priority to 2000 to make sure static assets are matched only if no other route is matched.
     public ResourcesRoute assetsRoute() {
-        return new ResourcesRoute("assets", "/assets", "assets", ImmutableMap.of("", "index.html"));
+        return new ResourcesRoute(
+                "assets", // route name, for log and debug only
+                "/",      // assets are served on / HTTP path
+                "assets", // assets are searched in /assets directory in classpath (src/main/resources/assets in sources)
+                ImmutableMap.of("", "index.html") // alias empty string to index.html, so asking for / will look for /index.html
+        );
     }
 
     @Provides
